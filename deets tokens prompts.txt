@@ -1,0 +1,14 @@
+research objective for a research called "insert" one concise paragraph
+
+what is the methodology for a research called "insert" one concise paragraph
+
+what are the key findings for a research called "insert" one concise paragraph
+
+what is the relevance and difference for a research called "insert" to a thesis called Named Entity Recognition for Tagalog using Transformers, one concise paragraph for the relevance and one concise paragraph for the difference
+
+
+fb token :
+EAAJzNjBW8G4BO1gTYZA7ECqW0AnUhanfVbgVnuckPLc5cC1fHDB5riQ1TltjenAnRiNjZAb8lJhIo4vdlCCGVZC6z0cUhdCiSaIm3j2Hixh27SvViZBBKekIxkOuXlDrecmqgGbOcF3ESagaW3q0EQeZC8gmt6xhqhGW5HL4zHIRIz1szmfz1zGHsHHsKtAShrWUfbM9Qx7cX
+
+gpt token :
+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

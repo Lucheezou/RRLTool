@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RRLTool</title>
+    
+  </head>
+  <body>
+
+
+<div id="root">
+    <h3>RRLTool by Lucheezou</h3>
+    <h1>Enter Research Title</h1>
+    <div class="textbox" onselectstart="return false"><textarea id="textbox" name="text" class="textbox" rows="7" cols="10" wrap="soft"></textarea>
+        
+        <button id="send" class="btn ocean large">Generate</button>
+       
+        </div>
+        <div id="lds" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    <table class="myTable">
+    <tr>
+    <th>Research Objective</th><th>Methodology</th><th>Key Findings</th><th>Relevance to your study</th><th>Difference to your study</th>
+    </tr>
+    <tr>
+    <td id="1"></td><td id="2"></td><td id="3"></td><td id="4"></td><td id="5"></td>
+    </tr>
+    <tr>
+    </tr>
+    </table>
+    
+
+</div>
+
+	
+  </body>
+
+
+  
+</html>
+
+<script>
+
+document.getElementById("send").addEventListener("click",()=>{
+  document.getElementById("lds").style.visibility = "visible"
+  let title = document.getElementById('textbox').value
+  
+  axios.post('/query', {
+   'question': title
+  })
+  .then(function (response) {
+    document.getElementById("lds").style.visibility = "hidden"
+    let answer = JSON.parse(response.data)
+    Object.keys(answer).forEach(item => {
+      document.getElementById(item).innerHTML = answer[item]
+    })
+  })
+
+})
+
+
+
+</script>
+
+ <!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
+    <style type="text/css">
+
+
+.lds-ellipsis {
+  visibility: hidden;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  
+  position: absolute;
+  top: -200px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #000000;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+
+
+    #root{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }    
+    
+    .textbox{
+        min-width: 30vw;
+        min-height: 10px;
+        font-size: 16px;
+    }
+
+    input {
+        
+        margin-bottom: 100px
+    }
+
+    .ocean {
+    position: relative;
+    bottom: 65px;
+    margin-bottom: 200px;
+    height: 70px;
+    width: 225px;
+    background:#000000;
+    transition:0.6s;
+    border:4px solid white;
+    border-radius:2em;
+    color:white;
+    font-style:italic;
+    padding:0.5em;
+    transition:0.6s;
+    }
+    .ocean:hover {
+    cursor: pointer;
+    border:4px solid #adadad;
+    background:#555555;
+    transition:0.6s;
+    }
+
+
+    * {font-family: 'Atkinson Hyperlegible', sans-serif;}
+    .myTable { width:1200px;background-color:#eee;border-collapse:collapse; }
+    .myTable th { background-color:#000;color:white;  }
+    .myTable td, .myTable th { padding:5px;border:1px solid #000; }
+    </style>
+    <!-- End Styles -->
