@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +17,14 @@
 
 <div id="root">
     <h3>RRLTool by Lucheezou</h3>
+    <div id="selection">
+    <h4>Current Thesis Title</h4>
+    <select id="thesis">
+      <option selected>Named Entity Recognition for Tagalong using Transformers</option>
+      <option>Voice Activated Coding</option>
+      <option >Gold</option>
+    </select>
+    </div>
     <h1>Enter Research Title</h1>
     <div class="textbox" onselectstart="return false"><textarea id="textbox" name="text" class="textbox" rows="7" cols="10" wrap="soft"></textarea>
         
@@ -46,11 +55,13 @@
 
 <script>
 
+
 document.getElementById("send").addEventListener("click",()=>{
   document.getElementById("lds").style.visibility = "visible"
   let title = document.getElementById('textbox').value
-  
+  let thesis = document.getElementById('thesis').value
   axios.post('/query', {
+   'thesis': thesis,
    'question': title
   })
   .then(function (response) {
@@ -81,7 +92,7 @@ document.getElementById("send").addEventListener("click",()=>{
 .lds-ellipsis div {
   
   position: absolute;
-  top: -200px;
+  top: -100px;
   width: 13px;
   height: 13px;
   border-radius: 50%;
@@ -149,10 +160,25 @@ document.getElementById("send").addEventListener("click",()=>{
         margin-bottom: 100px
     }
 
+    #selection{
+      padding: 10px;
+      border: solid 2px black;
+      align-items: center;
+      min-width: 50vw;
+      justify-content: space-between;
+      display: flex;
+      flex-flow: row;
+    }
+
+    #selection #thesis{
+      min-width: 10vw;
+      max-height: 5vh;
+    }
+
     .ocean {
     position: relative;
     bottom: 65px;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
     height: 70px;
     width: 225px;
     background:#000000;
